@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Blinkbox</title>
+
+<style>
+
+:root{
+  --bg:#0b0f1a;
+  --panel:#12182b;
+  --card:#161d35;
+  --accent:#6c8cff;
+  --text:#ffffff;
+  --muted:#9aa0c7;
+  --warning:#ffb020;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:poppins sans-serif;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(180deg,#0b0f1a,#080c16);
+  color:var(--text);
+}
+
+/* Header */
+.header{
+  padding:18px;
+  background:rgba(18,24,43,.9);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-weight:700;
+  letter-spacing:.5px;
+  font-size:16px;
+}
+
+/* Warning */
+.warning{
+  margin:16px;
+  padding:16px;
+  background:rgba(255,176,32,.12);
+  border:1px solid rgba(255,176,32,.35);
+  border-radius:14px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* Info cards */
+.info{
+  margin:0 16px;
+  display:grid;
+  gap:12px;
+}
+
+.info-card{
+  background:var(--panel);
+  border-radius:14px;
+  padding:14px;
+  font-size:13px;
+}
+
+.info-card strong{
+  color:var(--accent);
+}
+
+/* Section title */
+.section-title{
+  margin:20px 16px 10px;
+  font-size:14px;
+  font-weight:600;
+}
+
+/* Folders */
+.folders{
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.folder{
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+  position:relative;
+}
+
+.folder .icon{
+  font-size:30px;
+}
+
+.folder .name{
+  margin-top:8px;
+  font-size:12px;
+}
+
+.folder .count{
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.folder .lock{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:14px;
+  opacity:.7;
+}
+
+/* Bypass */
+.bypass{
+  margin:20px 16px;
+  padding:14px;
+  background:rgba(108,140,255,.12);
+  border:1px dashed rgba(108,140,255,.4);
+  border-radius:14px;
+  font-size:13px;
+}
+
+/* Payment Section */
+.payment{
+  margin:20px 16px;
+  background:var(--panel);
+  border-radius:16px;
+  padding:16px;
+}
+
+.payment-title{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.pay-option{
+  background:var(--card);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+}
+
+.pay-option span{
+  color:var(--muted);
+}
+
+/* Button */
+.pay-btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#6c8cff,#4b6fff);
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.pay-btn:active{
+  transform:scale(.98);
+}
+
+/* Footer */
+.footer{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  opacity:.6;
+  margin:20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="logo">blinkbox</div>
+</div>
+
+<!-- Warning -->
+<div class="warning">
+  ⚠️ <strong>Security Notice</strong><br>
+  Due to suspicious activity and repeated trials to login from a restricted device,
+  you have been logged out temporarily pending your payment for file protection as you applied.
+</div>
+
+<!-- Info -->
+<div class="info">
+  <div class="info-card">
+    📥 A total of <strong>3 new files</strong> from different people is downloaded and ready.
+  </div>
+
+  <div class="info-card">
+    📂 You now have a total of <strong>1,803 files</strong> on blinkbox.<br>
+    Thank you for choosing blinkbox.
+  </div>
+</div>
+
+<!-- Folders -->
+<div class="section-title">Your Files</div>
+
+<div class="folders">
+  <div class="folder">
+    <div class="lock">🔒</div>
+    <div class="icon">📁</div>
+    <div class="name">Photos</div>
+    <div class="count">924 files</div>
+  </div>
+
+  <div class="folder">
+    <div class="lock">🔒</div>
+    <div class="icon">📁</div>
+    <div class="name">Videos</div>
+    <div class="count">612 files</div>
+  </div>
+
+  <div class="folder">
+    <div class="lock">🔒</div>
+    <div class="icon">📁</div>
+    <div class="name">Archives</div>
+    <div class="count">267 files</div>
+  </div>
+</div>
+
+<!-- Bypass -->
+<div class="bypass">
+  🔐 <strong>Your alternate bypass</strong><br>
+  Secure access is available once file protection requirements are fulfilled.
+</div>
+
+<!-- Payment -->
+<div class="payment">
+  <div class="payment-title">Complete Payment</div>
+
+  <div class="pay-option">
+    <div>Pay with Bitcoin</div>
+    <span>$90</span>
+  </div>
+
+  <div class="pay-option">
+    <div>Pay with Razer Gold (Gift Card)</div>
+    <span>$130</span>
+  </div>
+
+  <button class="pay-btn">Proceed to Payment</button>
+</div>
+
+<div class="footer">
+  Blinkbox Premium • Your alternate bypass
+</div>
+
+</body>
+</html>
