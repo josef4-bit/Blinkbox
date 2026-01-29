@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blinkbox – Downloading</title>
+<title>Blinkbox — Download in Progress</title>
 
 <style>
 * {
@@ -24,36 +24,38 @@ body {
   width: 100%;
   max-width: 420px;
   background: #12182a;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.45);
 }
 
 /* HEADER */
 .header {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .header h1 {
-  font-size: 18px;
+  font-size: 19px;
   margin: 0;
+  font-weight: 700;
 }
 
 .header p {
   font-size: 12px;
   color: #9aa3ff;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 /* NOTE */
 .note {
   background: #1b2340;
   border-left: 4px solid #4f7cff;
-  padding: 12px;
+  padding: 14px;
   font-size: 13px;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 16px;
+  line-height: 1.5;
 }
 
 /* TIMER */
@@ -64,25 +66,32 @@ body {
   color: #aab3ff;
 }
 
-/* PROGRESS */
+/* PROGRESS BAR */
 .progress-wrapper {
   background: #1c2340;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  height: 10px;
-  margin-bottom: 20px;
+  height: 12px;
+  margin-bottom: 6px;
 }
 
 .progress-bar {
-  width: 80%;
+  width: 79%;
   height: 100%;
-  background: linear-gradient(90deg, #4f7cff, #7aa2ff);
-  animation: startLoad 3s ease-in-out infinite alternate;
+  background: linear-gradient(
+    90deg,
+    #4f7cff 0%,
+    #6f8dff 60%,
+    #9db1ff 100%
+  );
 }
 
-@keyframes startLoad {
-  from { width: 3%; }
-  to { width: 8%; }
+/* PROGRESS TEXT */
+.progress-text {
+  text-align: center;
+  font-size: 12px;
+  color: #9aa3ff;
+  margin-bottom: 20px;
 }
 
 /* FOLDERS */
@@ -94,29 +103,21 @@ body {
 
 .folders li {
   background: #161d35;
-  padding: 14px;
-  border-radius: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
   margin-bottom: 10px;
   font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .folder-icon {
   width: 18px;
   height: 14px;
-  background: #4f7cff;
+  background: linear-gradient(180deg,#6f8dff,#4f7cff);
   border-radius: 3px;
 }
-
-  .progress-text {
-  text-align: center;
-  font-size: 12px;
-  color: #9aa3ff;
-  margin-bottom: 18px;
-}
-
 </style>
 </head>
 
@@ -125,25 +126,26 @@ body {
 <div class="container">
 
   <div class="header">
-    <h1>Downloading Files…</h1>
-    <p>Preparing secure transfer</p>
+    <h1>Downloading Files</h1>
+    <p>Secure transfer in progress</p>
   </div>
 
   <div class="note">
     Files are being downloaded from Snapchat.  
-    Please keep this page open.
+    Please keep this tab open until the download is complete.
   </div>
 
   <div class="timer">
-  Estimated time remaining: <strong>1 hour 22 minutes</strong>
-</div>
+    Time remaining: <strong>1 hour 22 minutes</strong>
+  </div>
 
-<div class="progress-wrapper">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
+  <div class="progress-wrapper">
+    <div class="progress-bar"></div>
+  </div>
 
-<div class="progress-text" id="progressText">78%</div>
-
+  <div class="progress-text">
+    79% complete
+  </div>
 
   <ul class="folders">
     <li><span class="folder-icon"></span>bclark_47</li>
@@ -155,23 +157,7 @@ body {
 
 </div>
 
-  
-<script>
-let progress = 78;
-const bar = document.getElementById("progressBar");
-const text = document.getElementById("progressText");
-
-bar.style.width = progress + "%";
-
-setInterval(() => {
-  if (progress < 80) {
-    progress += 0.1; // very slow, realistic
-    bar.style.width = progress + "%";
-    text.textContent = Math.floor(progress) + "%";
-  }
-}, 3000);
-</script>
-
 </body>
 </html>
+
 
