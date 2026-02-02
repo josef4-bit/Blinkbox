@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blinkbox — Download in Progress</title>
+<title>Blinkbox — Files Secured</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
 * {
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 body {
@@ -22,101 +28,147 @@ body {
 
 .container {
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
   background: #12182a;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.45);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.55);
 }
 
 /* HEADER */
 .header {
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .header h1 {
-  font-size: 19px;
+  font-size: 20px;
   margin: 0;
   font-weight: 700;
 }
 
 .header p {
-  font-size: 12px;
+  font-size: 13px;
   color: #9aa3ff;
   margin-top: 6px;
 }
 
-/* NOTE */
-.note {
-  background: #1b2340;
+/* STATUS */
+.status {
+  background: #17204a;
   border-left: 4px solid #4f7cff;
   padding: 14px;
-  font-size: 13px;
   border-radius: 10px;
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
-/* TIMER */
-.timer {
   font-size: 13px;
-  margin-bottom: 10px;
-  text-align: center;
-  color: #aab3ff;
+  margin-bottom: 22px;
 }
 
-/* PROGRESS BAR */
-.progress-wrapper {
-  background: #1c2340;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 12px;
-  margin-bottom: 6px;
-}
-
-.progress-bar {
-  width: 79%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    #4f7cff 0%,
-    #6f8dff 60%,
-    #9db1ff 100%
-  );
-}
-
-/* PROGRESS TEXT */
-.progress-text {
-  text-align: center;
-  font-size: 12px;
-  color: #9aa3ff;
-  margin-bottom: 20px;
-}
-
-/* FOLDERS */
+/* FOLDERS GRID */
 .folders {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
-.folders li {
+.folder {
   background: #161d35;
-  padding: 14px 16px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  border-radius: 16px;
+  padding: 18px 14px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.folder:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.4);
 }
 
 .folder-icon {
-  width: 18px;
-  height: 14px;
-  background: linear-gradient(180deg,#6f8dff,#4f7cff);
-  border-radius: 3px;
+  font-size: 48px;
+  color: #6f8dff;
+  margin-bottom: 10px;
+}
+
+.lock {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,.6);
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.folder-name {
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,20,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-box {
+  background: #12182a;
+  border-radius: 18px;
+  max-width: 420px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.6);
+}
+
+.modal-box h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #ff6b6b;
+}
+
+.modal-box p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #d0d4ff;
+}
+
+.modal-box .error {
+  margin-top: 14px;
+  background: rgba(255,107,107,.12);
+  border: 1px solid rgba(255,107,107,.35);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.modal-box button {
+  margin-top: 18px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#6f8dff,#4f7cff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 11px;
+  color: #7f86c7;
+  opacity: .6;
 }
 </style>
 </head>
@@ -126,38 +178,83 @@ body {
 <div class="container">
 
   <div class="header">
-    <h1>Downloading Files</h1>
-    <p>Secure transfer in progress</p>
+    <h1>Files Synced Successfully</h1>
+    <p>Local security protocols applied</p>
   </div>
 
-  <div class="note">
-    Files are being downloaded from Snapchat.  
-    Please keep this tab open until the download is complete.
+  <div class="status">
+    All downloaded folders have been secured using Blinkbox local encryption
+    to protect your privacy and ownership.
   </div>
 
-  <div class="timer">
-    Time remaining: <strong>1 hour 22 minutes</strong>
+  <div class="folders">
+    <div class="folder" onclick="openModal()">
+      <div class="lock"><i class="fa-solid fa-lock"></i></div>
+      <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+      <div class="folder-name">bclark_47</div>
+    </div>
+
+    <div class="folder" onclick="openModal()">
+      <div class="lock"><i class="fa-solid fa-lock"></i></div>
+      <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+      <div class="folder-name">gr33nastronaut</div>
+    </div>
+
+    <div class="folder" onclick="openModal()">
+      <div class="lock"><i class="fa-solid fa-lock"></i></div>
+      <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+      <div class="folder-name">Anthony</div>
+    </div>
+
+    <div class="folder" onclick="openModal()">
+      <div class="lock"><i class="fa-solid fa-lock"></i></div>
+      <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+      <div class="folder-name">doug_starr</div>
+    </div>
+
+    <div class="folder" onclick="openModal()">
+      <div class="lock"><i class="fa-solid fa-lock"></i></div>
+      <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+      <div class="folder-name">superdog21</div>
+    </div>
   </div>
 
-  <div class="progress-wrapper">
-    <div class="progress-bar"></div>
+  <div class="footer">
+    Blinkbox Secure Interface • Demo Environment
   </div>
-
-  <div class="progress-text">
-    79% complete
-  </div>
-
-  <ul class="folders">
-    <li><span class="folder-icon"></span>bclark_47</li>
-    <li><span class="folder-icon"></span>gr33nastronaut</li>
-    <li><span class="folder-icon"></span>Anthony</li>
-    <li><span class="folder-icon"></span>doug_starr</li>
-    <li><span class="folder-icon"></span>superdog21</li>
-  </ul>
 
 </div>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>Access Restricted</h2>
+    <p>
+      Your files have been locally encrypted by <strong>blinkbox.vercel.app</strong>
+      for safety and privacy protection.
+    </p>
+
+    <div class="error">
+      ❌ Files cannot be opened.<br><br>
+      To unlock and personalize these files so they become fully yours,
+      contact the seller or purchase a <strong>Razer Gold Gift Card ($120)</strong>.
+    </div>
+
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+</script>
+
+
+
 </body>
 </html>
-
-
